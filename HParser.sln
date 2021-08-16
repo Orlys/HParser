@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HParser", "HParser\HParser.csproj", "{1D43C4FA-8CB8-4D18-8718-548A50F751E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HParserTests", "HParserTests\HParserTests.csproj", "{F1E276FB-3D32-4E0C-A965-87055907D39C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91E60767-3B36-470B-96EA-381C168D828A}
+	EndGlobalSection
+EndGlobal

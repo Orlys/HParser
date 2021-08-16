@@ -1,0 +1,49 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+ 
+namespace HParser.TypeConverters
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+<#
+var tryParseTypes  = new [] { 
+    "Boolean", "Char", "Byte", "SByte", 
+    "Int16", "UInt16", "Int32", "UInt32",
+    "Int64", "UInt64", "Single", "Double", 
+    "Guid", "Decimal", "DateTime", "DateTimeOffset", 
+    "TimeSpan" 
+};
+foreach (var pt in tryParseTypes)
+{#>
+    public class <#=pt#>TypeConverter : ITypeConverter
+    {
+        public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
+        {
+            return t == typeof(<#=pt#>);
+        }
+
+        public virtual bool TryConvert(ITypeConverterProvider provider, string content, Type graphType, out object graph)
+        {
+            var flag = <#=pt#>.TryParse(content, out var value);
+            graph = value;
+            return flag;
+        }
+
+        public virtual string ToString(ITypeConverterProvider provider, object graph)
+        {
+            return graph.ToString();
+        }
+    }
+
+<#
+}
+#> 
+}
