@@ -47,6 +47,22 @@
         <li> String             </li>
     </ul> 
 </details>
- 
+
+## 使用方法
+```雖然我知道沒人會用這個爛東西，但我還是要補一下用法```
+```csharp
+using HParser;
+
+var service = ServiceLocator.Service;
+int intToConv = 20;
+
+// 將東西轉換成字串
+string str = service.ToString(intToConv); 
+
+// 將字串轉回整數
+int graph = service.ToGraph<int>(str);
+
+// graph: 20
+```
 ## 授權
 [你他媽的想幹嘛就幹嘛](./License)
