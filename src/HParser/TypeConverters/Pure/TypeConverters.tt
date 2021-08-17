@@ -19,7 +19,7 @@ namespace HParser
         static partial void RegisterBuiltinConverter(ITypeConverterProvider provider)
         {
 <# foreach (var pt in tryParseTypes){#>
-            provider.Register<<#=pt#>TypeConverter>();
+            provider.Register<<#=(pt + "TypeConverter")#>>();
 <# } #>
         }
     }

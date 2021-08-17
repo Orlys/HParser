@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HParser", "HParser\HParser.csproj", "{1D43C4FA-8CB8-4D18-8718-548A50F751E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HParser", "src\HParser\HParser.csproj", "{D738C168-95FF-4365-B158-2824A0AFA0AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HParserTests", "HParserTests\HParserTests.csproj", "{F1E276FB-3D32-4E0C-A965-87055907D39C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HParserTests", "src\HParserTests\HParserTests.csproj", "{F58C776A-740F-4FED-B45D-0C12C4176EFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A637D2C2-70BB-4AA8-9893-B20886CAC06A}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D43C4FA-8CB8-4D18-8718-548A50F751E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1E276FB-3D32-4E0C-A965-87055907D39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D738C168-95FF-4365-B158-2824A0AFA0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D738C168-95FF-4365-B158-2824A0AFA0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D738C168-95FF-4365-B158-2824A0AFA0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D738C168-95FF-4365-B158-2824A0AFA0AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58C776A-740F-4FED-B45D-0C12C4176EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58C776A-740F-4FED-B45D-0C12C4176EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58C776A-740F-4FED-B45D-0C12C4176EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58C776A-740F-4FED-B45D-0C12C4176EFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

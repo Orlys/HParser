@@ -18,7 +18,7 @@
         private readonly static Lazy<ITypeConvertService> s_service;
 
         static ServiceLocator()
-        { 
+        {
             s_provider = new Lazy<ITypeConverterProvider>(() =>
             {
                 var p = new TypeConverterProvider()
