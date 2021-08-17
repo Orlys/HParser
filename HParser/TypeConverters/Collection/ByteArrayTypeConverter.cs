@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Drawing;
 
 namespace HParser.TypeConverters
 {
-    public class ColorTypeConverter : ITypeConverter
+    public class ByteArrayTypeConverter : ITypeConverter
     {
         public bool CanConvert(ITypeConverterProvider provider, Type t)
         {
-            return t == typeof(Color);
+            return t == typeof(byte[]);
         }
-
 
         public bool TryConvert(ITypeConverterProvider provider, string content, Type graphType, out object graph)
         {
@@ -17,23 +15,18 @@ namespace HParser.TypeConverters
             {
                 try
                 {
-                    graph = ColorTranslator.FromHtml(content);
+                    graph = Convert.FromBase64String(content);
                     return true;
                 }
-                catch
-                {
-                }
+                catch { }
             }
-
             graph = null;
             return false;
         }
 
         public string ToString(ITypeConverterProvider provider, object graph)
         {
-            return ColorTranslator.ToHtml((Color)graph);
+            return Convert.ToBase64String((byte[])graph);
         }
-
-
     }
 }

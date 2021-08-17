@@ -137,11 +137,11 @@ namespace HParser.Tests
 
             var expected = new List<string> { "'aa   \'a'", "bbb" };
             var value = service.ToString(expected);
-            var actual = service.ToGraph(expected.GetType(), value);
+            var actual = service.ToGraph<List<string>>(value);
 
             Assert.IsInstanceOf<List<string>>(actual);
 
-            CollectionAssert.AreEqual(expected, actual as List<string>);
+            CollectionAssert.AreEqual(expected, actual  );
         }
 
 
@@ -164,7 +164,107 @@ namespace HParser.Tests
 
             CollectionAssert.AreEqual(expected, actual as DayOfWeek[]);
         }
+
+
+
+        [Test()]
+        public void 鍵值對類型轉換_測試()
+        {
+            var provider = new TypeConverterProvider()
+                .Register(new Int32TypeConverter())
+                .Register(new KeyValuePairTypeConverter())
+                ;
+
+            var service = new TypeConvertService(provider);
+
+            var expected = new KeyValuePair<int, int>(12, 22);
+            var value = service.ToString(expected);
+            var actual = service.ToGraph<KeyValuePair<int, int>>(value);
+
+            Assert.IsInstanceOf<KeyValuePair<int, int>>(actual);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [Test()]
+        public void 鍵值對清單類型轉換_測試()
+        {
+            var provider = new TypeConverterProvider()
+                .Register(new Int32TypeConverter())
+                .Register(new KeyValuePairTypeConverter())
+                .Register(new ListTypeConverter())
+                .Register(new StringTypeConverter())
+                ;
+
+            var service = new TypeConvertService(provider);
+
+            var expected = new List<KeyValuePair<int, string>> {
+                new KeyValuePair<int, string>(1, "one"),
+                new KeyValuePair<int, string>(2, "tw\\'o"),
+            };
+            var value = service.ToString(expected);
+            var actual = service.ToGraph<List<KeyValuePair<int, string>>>(value);
+
+            Assert.IsInstanceOf<List<KeyValuePair<int, string>>>(actual);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [Test()]
+        public void 巢狀鍵值對清單類型轉換_測試()
+        {
+            var provider = new TypeConverterProvider()
+                .Register(new Int32TypeConverter())
+                .Register(new KeyValuePairTypeConverter())
+                .Register(new ListTypeConverter())
+                .Register(new StringTypeConverter())
+                ;
+
+            var service = new TypeConvertService(provider);
+
+            var expected = new List<KeyValuePair<int, List<string>>> {
+                new KeyValuePair<int, List<string>>(1, new List<string>{ "one", "一 壹" }),
+                new KeyValuePair<int, List<string>>(2, new List<string>{ "two", "二" }),
+            };
+            var value = service.ToString(expected);
+            var actual = service.ToGraph<List<KeyValuePair<int, List<string>>>>(value);
+
+            Assert.IsInstanceOf<List<KeyValuePair<int, List<string>>>>(actual);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+
+        [Test()]
+        public void 字典類型轉換_測試()
+        {
+            var provider = new TypeConverterProvider()
+                .Register(new Int32TypeConverter())
+                .Register(new KeyValuePairTypeConverter())
+                .Register(new ListTypeConverter())
+                .Register(new StringTypeConverter())
+                .Register(new DictionaryTypeConverter())
+                ; 
+            var service = new TypeConvertService(provider);
+
+            var expected = new Dictionary<int, List<string>>
+            {
+                [1] = new List<string> { "one", "一 壹" },
+                [2] = new List<string> { "two", "二" }, 
+            };
+            var value = service.ToString(expected);
+            var actual = service.ToGraph<Dictionary<int, List<string>>>(value);
+
+            Assert.IsInstanceOf<Dictionary<int, List<string>>>(actual);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+         
     }
 
-    
+
 }

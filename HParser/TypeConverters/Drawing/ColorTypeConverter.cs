@@ -2,12 +2,12 @@
 using System.Drawing;
 
 namespace HParser.TypeConverters
-{
-    public class SizeTypeConverter : ITypeConverter
+{ 
+    public class ColorTypeConverter : ITypeConverter
     {
         public bool CanConvert(ITypeConverterProvider provider, Type t)
         {
-            return t == typeof(Size);
+            return t == typeof(Color);
         }
 
 
@@ -15,12 +15,13 @@ namespace HParser.TypeConverters
         {
             if (content != null)
             {
-                var partials = content.Split(new[] { '×', '*', 'x', ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-                if (partials.Length == 2 && int.TryParse(partials[0], out var w) &&
-                    int.TryParse(partials[1], out var h))
+                try
                 {
-                    graph = new Size(w, h);
+                    graph = ColorTranslator.FromHtml(content);
                     return true;
+                }
+                catch
+                {
                 }
             }
 
@@ -30,8 +31,9 @@ namespace HParser.TypeConverters
 
         public string ToString(ITypeConverterProvider provider, object graph)
         {
-            var sz = ((Size)graph);
-            return $"{sz.Width}x{sz.Height}";
-        } 
+            return ColorTranslator.ToHtml((Color)graph);
+        }
+
+
     }
 }

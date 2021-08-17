@@ -6,7 +6,6 @@
     {
         ITypeConverter GetTypeConverter(Type type);
         ITypeConverterProvider Register(ITypeConverter converter);
+        ITypeConverterProvider Deregister(ITypeConverter converter);
     }
-
-
 }

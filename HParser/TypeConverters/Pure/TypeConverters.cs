@@ -1,12 +1,40 @@
 ﻿ 
+namespace HParser
+{
+    using HParser.TypeConverters;
+    static partial class ServiceLocator
+    {
+        static partial void RegisterBuiltinConverter(ITypeConverterProvider provider)
+        {
+            provider.Register<BooleanTypeConverter>();
+            provider.Register<CharTypeConverter>();
+            provider.Register<ByteTypeConverter>();
+            provider.Register<SByteTypeConverter>();
+            provider.Register<Int16TypeConverter>();
+            provider.Register<UInt16TypeConverter>();
+            provider.Register<Int32TypeConverter>();
+            provider.Register<UInt32TypeConverter>();
+            provider.Register<Int64TypeConverter>();
+            provider.Register<UInt64TypeConverter>();
+            provider.Register<SingleTypeConverter>();
+            provider.Register<DoubleTypeConverter>();
+            provider.Register<GuidTypeConverter>();
+            provider.Register<DecimalTypeConverter>();
+            provider.Register<DateTimeTypeConverter>();
+            provider.Register<DateTimeOffsetTypeConverter>();
+            provider.Register<TimeSpanTypeConverter>();
+            provider.Register<BigIntegerTypeConverter>();
+            provider.Register<VersionTypeConverter>();
+        }
+    }
+}
+
 namespace HParser.TypeConverters
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System; 
+    using System.Numerics; 
 
+    
     public class BooleanTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -27,6 +55,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class CharTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -47,6 +76,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class ByteTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -67,6 +97,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class SByteTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -87,6 +118,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class Int16TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -107,6 +139,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class UInt16TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -127,6 +160,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class Int32TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -147,6 +181,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class UInt32TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -167,6 +202,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class Int64TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -187,6 +223,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class UInt64TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -207,6 +244,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class SingleTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -227,6 +265,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class DoubleTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -247,6 +286,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class GuidTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -267,6 +307,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class DecimalTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -287,6 +328,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class DateTimeTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -307,6 +349,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class DateTimeOffsetTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -327,6 +370,7 @@ namespace HParser.TypeConverters
         }
     }
 
+    
     public class TimeSpanTypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -337,6 +381,48 @@ namespace HParser.TypeConverters
         public virtual bool TryConvert(ITypeConverterProvider provider, string content, Type graphType, out object graph)
         {
             var flag = TimeSpan.TryParse(content, out var value);
+            graph = value;
+            return flag;
+        }
+
+        public virtual string ToString(ITypeConverterProvider provider, object graph)
+        {
+            return graph.ToString();
+        }
+    }
+
+    
+    public class BigIntegerTypeConverter : ITypeConverter
+    {
+        public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
+        {
+            return t == typeof(BigInteger);
+        }
+
+        public virtual bool TryConvert(ITypeConverterProvider provider, string content, Type graphType, out object graph)
+        {
+            var flag = BigInteger.TryParse(content, out var value);
+            graph = value;
+            return flag;
+        }
+
+        public virtual string ToString(ITypeConverterProvider provider, object graph)
+        {
+            return graph.ToString();
+        }
+    }
+
+    
+    public class VersionTypeConverter : ITypeConverter
+    {
+        public virtual bool CanConvert(ITypeConverterProvider provider, Type t)
+        {
+            return t == typeof(Version);
+        }
+
+        public virtual bool TryConvert(ITypeConverterProvider provider, string content, Type graphType, out object graph)
+        {
+            var flag = Version.TryParse(content, out var value);
             graph = value;
             return flag;
         }

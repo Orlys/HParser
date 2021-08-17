@@ -2,27 +2,37 @@
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".cs" #>
- 
-namespace HParser.TypeConverters
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
-<#
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ output extension=".cs" #><#
 var tryParseTypes  = new [] { 
     "Boolean", "Char", "Byte", "SByte", 
     "Int16", "UInt16", "Int32", "UInt32",
     "Int64", "UInt64", "Single", "Double", 
     "Guid", "Decimal", "DateTime", "DateTimeOffset", 
-    "TimeSpan" 
-};
-foreach (var pt in tryParseTypes)
+    "TimeSpan", "BigInteger", "Version" 
+};#>
+namespace HParser
+{
+    using HParser.TypeConverters;
+    static partial class ServiceLocator
+    {
+        static partial void RegisterBuiltinConverter(ITypeConverterProvider provider)
+        {
+<# foreach (var pt in tryParseTypes){#>
+            provider.Register<<#=pt#>TypeConverter>();
+<# } #>
+        }
+    }
+}
+
+namespace HParser.TypeConverters
+{
+    using System; 
+    using System.Numerics; 
+
+<#foreach (var pt in tryParseTypes)
 {#>
+    
     public class <#=pt#>TypeConverter : ITypeConverter
     {
         public virtual bool CanConvert(ITypeConverterProvider provider, Type t)

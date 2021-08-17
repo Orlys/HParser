@@ -2,6 +2,8 @@
 
 namespace HParser.TypeConverters
 {
+
+
     public class StringTypeConverter : ITypeConverter
     {
         private const string Quote = "'";

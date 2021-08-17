@@ -6,7 +6,6 @@ using System.Linq;
 namespace HParser.TypeConverters
 {
 
-
     public class ListTypeConverter : ITypeConverter
     {
         public bool CanConvert(ITypeConverterProvider provider, Type t)
@@ -33,8 +32,8 @@ namespace HParser.TypeConverters
 
             if (graph == null)
                 return null;
-
-            var listEleType = graph.GetType().GetGenericArguments().Single();
+            var t = graph.GetType();
+            var listEleType = t.GetGenericArguments().Single();
             var arv = (ICollection)graph;
             if(arv.Count == 0)
                 return null; 

@@ -1,5 +1,6 @@
 ﻿namespace HParser
 {
+
     using System;
     using System.ComponentModel;
 
@@ -10,6 +11,11 @@
         public TypeConvertService(ITypeConverterProvider provider)
         {
             this._provider = provider;
+        }
+
+        public TGraph ToGraph<TGraph>(string content)
+        {
+            return (TGraph)ToGraph(typeof(TGraph), content);
         }
 
         public object ToGraph(Type graphType, string content)
@@ -65,6 +71,4 @@
             return base.ToString();
         }
     }
-
-
 }
